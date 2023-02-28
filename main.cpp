@@ -1,19 +1,27 @@
 #include <iostream>
-#include "math.h"
-std::string name;
+#include <string>
+#include <sstream>
 
+using namespace std;
 int main()
 {
-    printf("What is your name?");
-    std::getline(std::cin,name);
     
-    
-    while (true)
+    string text;
+    cout << "Enter the text to convert to hexidecimal: \n";
+    getline(cin, text);
+
+    for (size_t i = 0; i < text.length() + (text.length()/2); i++)
     {
-        system("clear");
-        printf(std::string(" \nHello "+ name + " nice to meant you!\n").c_str());
-        math();
+        unsigned char c = text[i];
+        stringstream hexstream;
+        hexstream << std::hex << (int)c;
+        string hex = hexstream.str();
+        if (hex.length() == 1)
+        {
+            hex = "0" + hex;
+        }
+        
+        cout << hex;
     }
-    system("pause");
-    return 0;
+    cout << endl;
 }
